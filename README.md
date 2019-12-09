@@ -1,3 +1,81 @@
+# State 공부
+
+* 관련 링크 : [생활코딩 수업 강좌 링크 : React/state](https://www.opentutorials.org/module/4058/24738)
+
+
+## 00. state란?
+
+state와 props와 같이 이해해야함.
+> 기존 코드는 App.js에 속성(attribute)값에 하드코딩 되어있음.
+
+
+props와 같은 하드코딩되어있는 값을 state로 만들고<br />
+state값을 Content에 props값으로 전달하는 것을 통해 코드 개선 예정
+
+
+철저하게 은닉하는것이 중요 :)
+> 핸드폰 샀는데 전선이랑 안에 부품들이 노출되면 싫은 것 처럼!
+
+
+## 01. state 값을 초기화하는 코드
+
+컨포넌트가 실행될 때 constructor()가 있다면 제일 먼저 실행되어 초기화를 담당한다.
+
+> cf. Java 생성자같은 느낌
+```js
+    constructor(props){
+        super(props)
+    }
+```
+
+## 02. convert props to state 
+
+기존 코드
+```js
+    class App extends Component {
+    constructor(props){
+        super(props)
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Subject title="WEB" sub="world wide web!"></Subject>
+                <TOC></TOC>
+                <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
+            </div>
+        );
+        }
+    }
+```
+
+바뀐 코드
+```js
+    class App extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            subject:{title:'WEB', sub='world wide web!'}
+        }
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Subject 
+                    title={this.state.subject.title}
+                    sub={this.state.subject.sub}>
+                </Subject>
+                <TOC></TOC>
+                <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
+            </div>
+        );
+        }
+    }
+```
+
+<hr>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
