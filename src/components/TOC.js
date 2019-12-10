@@ -2,21 +2,23 @@ import React, {Component} from 'react';
 
 class TOC extends Component {
     render() {
-        return (
-            <nav>
-                <ul>
-                    <li>
-                        <a href="1.html">HTML</a>
-                    </li>
-                    <li>
-                        <a href="2.html">CSS</a>
-                    </li>
-                    <li>
-                        <a href="3.html">JavaScript</a>
-                    </li>
-                </ul>
-            </nav>
-        );
+        var lists = [];
+        var datas = this.props.data;
+        var i = 0;
+        while (i < datas.length) {
+            lists.push(
+                <li key={datas[i].id}>
+                    <a href={"/content/" + datas[i].id}>{datas[i].title}</a>
+                </li>
+            )
+            i += 1;
+        }
+
+        return (<nav>
+                    <ul>
+                        {lists}
+                    </ul>
+                </nav>);
     }
 }
 export default TOC;
